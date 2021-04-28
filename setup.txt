@@ -1,0 +1,33 @@
+# tflite 가상환경 설정
+mkdir -p Projects/Python/tflite
+cd Projects/Python/tflite
+python3 -m pip install virtualenv
+python3 -m venv tflite-env
+
+# tflite 가상환경 시작
+source tflite-env/bin/activate
+
+# tflite 관련 lib설치 
+sudo apt -y install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
+sudo apt -y install qt4-dev-tools libatlas-base-dev libhdf5-103 
+
+# OpenCV 설치
+python3 -m pip install opencv-contrib-python==4.1.0.25
+
+# tflite runtime 설치
+python3 -m pip install https://github.com/google-coral/pycoral/releases/download/release-frogfish/tflite_runtime-2.5.0-cp37-cp37m-linux_armv7l.whl
+
+## SSD mobilent v1 
+# 학습모델 다운로드 & 세팅
+https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip
+mkdir -p ~/Projects/Python/tflite/object_detection/coco_ssd_mobilenet_v1
+cd ~/Projects/Python/tflite/object_detection
+mv ~/Downloads/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip .
+unzip coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip -d coco_ssd_mobilenet_v1
+
+# 학습모델 실행
+cd ~/Projects/Python/tflite
+source tflite-env/bin/activate
+cd object_detection
+python3 cctv_work_detect_local.py --modeldir=coco_ssd_mobilenet_v1
+
