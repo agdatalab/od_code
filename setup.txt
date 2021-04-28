@@ -25,7 +25,7 @@ mkdir -p ~/Projects/Python/tflite/object_detection/coco_ssd_mobilenet_v1
 cd ~/Projects/Python/tflite/object_detection/coco_ssd_mobilenet_v1
 mv ~/Downloads/od_code/detect.tflite .  
 mv ~/Downloads/od_code/labelmap.txt .  
-cd ~/Projects/Python/tflite/object_detection/
+cd ..
 mv ~/Downloads/od_code/cctv_test_rasp_local.py .  
 mv ~/Downloads/od_code/cctv_work_detect_rasp_ssh_ftp2.py .  
 mv ~/Downloads/od_code/cctv_work_detect_rasp_ssh_local2.py .  
@@ -34,7 +34,7 @@ mv ~/Downloads/od_code/cctv_work_detect_rasp_ssh_local2.py .
 cd ~/Projects/Python/tflite
 source tflite-env/bin/activate
 cd object_detection
-python3 cctv_test_rasp_local.py --modeldir=coco_ssd_mobilenet_v1
+python3 cctv_test_rasp_local.py 
 display /home/pi/Downloads/cctv_image/cctv_test.jpg
 python3 cctv_work_detect_rasp_ssh_local2.py --modeldir=coco_ssd_mobilenet_v1
 
