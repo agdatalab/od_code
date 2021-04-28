@@ -19,15 +19,19 @@ python3 -m pip install https://github.com/google-coral/pycoral/releases/download
 
 ## SSD mobilent v1 
 # 학습모델 다운로드 & 세팅
-https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip
+cd ~/Downloads
+git clone https://github.com/agdatalab/od_code.git
 mkdir -p ~/Projects/Python/tflite/object_detection/coco_ssd_mobilenet_v1
-cd ~/Projects/Python/tflite/object_detection
-mv ~/Downloads/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip .
-unzip coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip -d coco_ssd_mobilenet_v1
+cd ~/Projects/Python/tflite/object_detection/coco_ssd_mobilenet_v1
+mv ~/Downloads/od_code/detect.tflite .  
+mv ~/Downloads/od_code/labelmap.txt .  
+cd ~/Projects/Python/tflite/object_detection/
+mv ~/Downloads/od_code/cctv_test_local_farm.py .  
+mv ~/Downloads/od_code/cctv_work_detect_local_farm.py .  
 
 # 학습모델 실행
 cd ~/Projects/Python/tflite
 source tflite-env/bin/activate
 cd object_detection
-python3 cctv_work_detect_local.py --modeldir=coco_ssd_mobilenet_v1
+python3 cctv_work_detect_local_farm.py --modeldir=coco_ssd_mobilenet_v1
 
